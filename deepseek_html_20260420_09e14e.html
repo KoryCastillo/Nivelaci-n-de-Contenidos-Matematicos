@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivelación de Contenidos Matemáticos - UNED | 12 Módulos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f7ff;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #003366 0%, #0055aa 100%);
+            color: white;
+            padding: 30px 0;
+            border-bottom: 5px solid #ff9900;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .header-text {
+            flex: 2;
+        }
+        .header-image {
+            flex: 1;
+            text-align: center;
+        }
+        .header-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #ff9900;
+            color: #003366;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        nav {
+            background-color: #004d99;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+        }
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        .nav-menu a:hover {
+            background-color: #ff9900;
+            color: #003366;
+            transform: translateY(-2px);
+        }
+        .main-content {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 30px 0;
+        }
+        h2 {
+            color: #003366;
+            border-left: 6px solid #ff9900;
+            padding-left: 18px;
+            margin: 30px 0 20px 0;
+            font-size: 1.8rem;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        .module-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border: 1px solid #e0e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #ff9900;
+            transition: width 0.3s;
+        }
+        .module-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,51,102,0.15);
+            border-color: #ff9900;
+        }
+        .module-card:hover::before {
+            width: 6px;
+        }
+        .module-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .module-card h3 {
+            color: #004d99;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .module-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .module-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            background-color: #e8f0fe;
+            color: #004d99;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9900 0%, #ffb347 100%);
+            color: #003366;
+            padding: 8px 18px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(255,153,0,0.4);
+            background: linear-gradient(135deg, #e68a00 0%, #ff9900 100%);
+        }
+        .alert {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-left: 5px solid #ffc107;
+            padding: 18px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .alert strong {
+            color: #856404;
+        }
+        .coordinators {
+            background-color: #f0f4fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        footer {
+            background-color: #002244;
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+        .license {
+            font-size: 0.8rem;
+            margin-top: 12px;
+            color: #888;
+        }
+        footer a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .main-content { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+            .header-content { flex-direction: column; text-align: center; }
+            .modules-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .module-card h3 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>📚 Nivelación de Contenidos Matemáticos</h1>
+                    <p class="subtitle">Carrera Enseñanza de la Matemática - Universidad Estatal a Distancia (UNED)</p>
+                    <div class="badge">🎓 12 Módulos completos | Aprendizaje autónomo</div>
+                </div>
+                <div class="header-image">
+                    <!-- Imagen SVG de libros y materiales académicos (base64 embebida para que funcione sin internet) -->
+                    <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="40" width="40" height="90" rx="3" fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
+                        <rect x="25" y="45" width="30" height="80" fill="#ecf0f1"/>
+                        <line x1="30" y1="55" x2="50" y2="55" stroke="#3498db" stroke-width="2"/>
+                        <line x1="30" y1="65" x2="50" y2="65" stroke="#3498db" stroke-width="2"/>
+                        <line x1="30" y1="75" x2="45" y2="75" stroke="#e74c3c" stroke-width="2"/>
+                        
+                        <rect x="75" y="30" width="45" height="100" rx="3" fill="#34495e" stroke="#1a252f" stroke-width="2"/>
+                        <rect x="80" y="35" width="35" height="90" fill="#f9f9f9"/>
+                        <line x1="85" y1="45" x2="110" y2="45" stroke="#27ae60" stroke-width="2"/>
+                        <line x1="85" y1="55" x2="108" y2="55" stroke="#27ae60" stroke-width="2"/>
+                        <line x1="85" y1="65" x2="105" y2="65" stroke="#f39c12" stroke-width="2"/>
+                        
+                        <rect x="135" y="50" width="35" height="80" rx="3" fill="#7f8c8d" stroke="#1a252f" stroke-width="2"/>
+                        <rect x="140" y="55" width="25" height="70" fill="#fef9e7"/>
+                        <line x1="145" y1="65" x2="160" y2="65" stroke="#8e44ad" stroke-width="2"/>
+                        <line x1="145" y1="75" x2="158" y2="75" stroke="#8e44ad" stroke-width="2"/>
+                        
+                        <circle cx="100" cy="140" r="12" fill="#ff9900" stroke="#cc7a00" stroke-width="2"/>
+                        <text x="93" y="145" font-size="12" fill="white" font-weight="bold">+</text>
+                        
+                        <rect x="30" y="135" width="50" height="12" rx="2" fill="#bdc3c7"/>
+                        <rect x="90" y="135" width="50" height="12" rx="2" fill="#bdc3c7"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#">🏠 Inicio</a></li>
+                <li><a href="#">📖 Módulos</a></li>
+                <li><a href="#">🎥 Videos</a></li>
+                <li><a href="#">✏️ Ejercicios</a></li>
+                <li><a href="#">📊 Autoevaluación</a></li>
+                <li><a href="#">📞 Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <h2>🎯 Proyecto de Nivelación de Contenidos Matemáticos</h2>
+            <p class="intro-text">Como parte de este proyecto, la carrera de Enseñanza de la Matemática de la UNED desarrolló materiales didácticos organizados en <strong>12 módulos temáticos</strong> que abarcan desde conceptos básicos hasta temas avanzados, dirigidos a las personas estudiantes que ingresan a la carrera y necesitan reforzar conocimientos, así como a cualquier persona interesada en fortalecer sus competencias matemáticas.</p>
+            <p class="intro-text">Estos recursos incluyen teoría con explicaciones claras, ejemplos resueltos, videos explicativos y ejercicios de autoevaluación, lo cual facilita el aprendizaje autónomo y el desarrollo de competencias matemáticas fundamentales. Pueden ser utilizados en la mediación pedagógica de otras carreras de la UNED y en instituciones educativas públicas y privadas, tanto a nivel nacional como internacional.</p>
+            
+            <div class="alert">
+                <strong>📌 IMPORTANTE:</strong> Esta es una versión estática de referencia que muestra la estructura completa de los 12 módulos. Los materiales originales (PDFs, videos, ejercicios) se encuentran alojados en el sitio oficial de <strong>matesvirtuales.com/uned</strong>. Para acceder a las descargas reales y a los recursos interactivos, visita el sitio web original.
+            </div>
+
+            <h2>📚 Los 12 Módulos de Aprendizaje</h2>
+            <div class="modules-grid">
+                <!-- Módulo 1 -->
+                <div class="module-card">
+                    <div class="module-icon">🔢</div>
+                    <h3>1. Conjuntos Numéricos</h3>
+                    <div class="module-tags"><span class="tag">Naturales</span><span class="tag">Enteros</span><span class="tag">Racionales</span><span class="tag">Reales</span></div>
+                    <p>Propiedades, operaciones y representación en la recta numérica. Números irracionales y sus aplicaciones.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 2 -->
+                <div class="module-card">
+                    <div class="module-icon">✖️</div>
+                    <h3>2. Álgebra Básica</h3>
+                    <div class="module-tags"><span class="tag">Expresiones</span><span class="tag">Monomios</span><span class="tag">Polinomios</span></div>
+                    <p>Lenguaje algebraico, términos semejantes, productos notables y factorización.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 3 -->
+                <div class="module-card">
+                    <div class="module-icon">⚖️</div>
+                    <h3>3. Ecuaciones e Inecuaciones</h3>
+                    <div class="module-tags"><span class="tag">Lineales</span><span class="tag">Cuadráticas</span><span class="tag">Sistemas</span></div>
+                    <p>Resolución de ecuaciones de primer y segundo grado, sistemas lineales y desigualdades.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 4 -->
+                <div class="module-card">
+                    <div class="module-icon">📐</div>
+                    <h3>4. Geometría Plana</h3>
+                    <div class="module-tags"><span class="tag">Ángulos</span><span class="tag">Triángulos</span><span class="tag">Áreas</span></div>
+                    <p>Figuras geométricas, teorema de Pitágoras, semejanza y congruencia.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 5 -->
+                <div class="module-card">
+                    <div class="module-icon">📦</div>
+                    <h3>5. Geometría del Espacio</h3>
+                    <div class="module-tags"><span class="tag">Volúmenes</span><span class="tag">Sólidos</span><span class="tag">Superficies</span></div>
+                    <p>Prismas, pirámides, cilindros, conos y esferas. Cálculo de volúmenes y áreas.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 6 -->
+                <div class="module-card">
+                    <div class="module-icon">📈</div>
+                    <h3>6. Funciones Reales</h3>
+                    <div class="module-tags"><span class="tag">Dominio</span><span class="tag">Rango</span><span class="tag">Gráficas</span></div>
+                    <p>Concepto de función, funciones lineales, cuadráticas, valor absoluto y definidas por partes.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 7 -->
+                <div class="module-card">
+                    <div class="module-icon">📊</div>
+                    <h3>7. Funciones Trascendentes</h3>
+                    <div class="module-tags"><span class="tag">Exponenciales</span><span class="tag">Logarítmicas</span></div>
+                    <p>Propiedades, gráficas, ecuaciones exponenciales y logarítmicas. Aplicaciones en modelado.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 8 -->
+                <div class="module-card">
+                    <div class="module-icon">📐</div>
+                    <h3>8. Trigonometría</h3>
+                    <div class="module-tags"><span class="tag">Razones</span><span class="tag">Identidades</span><span class="tag">Ecuaciones</span></div>
+                    <p>Funciones trigonométricas, círculo unitario, identidades y resolución de triángulos.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 9 -->
+                <div class="module-card">
+                    <div class="module-icon">📈</div>
+                    <h3>9. Estadística Descriptiva</h3>
+                    <div class="module-tags"><span class="tag">Media</span><span class="tag">Mediana</span><span class="tag">Desviación</span></div>
+                    <p>Organización de datos, tablas de frecuencias, gráficos, medidas de tendencia central y dispersión.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 10 -->
+                <div class="module-card">
+                    <div class="module-icon">🎲</div>
+                    <h3>10. Probabilidad</h3>
+                    <div class="module-tags"><span class="tag">Espacio muestral</span><span class="tag">Eventos</span><span class="tag">Teoremas</span></div>
+                    <p>Conceptos básicos, reglas de probabilidad, probabilidad condicional y teorema de Bayes.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 11 -->
+                <div class="module-card">
+                    <div class="module-icon">🧮</div>
+                    <h3>11. Matrices y Determinantes</h3>
+                    <div class="module-tags"><span class="tag">Operaciones</span><span class="tag">Inversa</span><span class="tag">Rango</span></div>
+                    <p>Suma, multiplicación, matriz inversa, cálculo de determinantes y aplicaciones.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+                <!-- Módulo 12 -->
+                <div class="module-card">
+                    <div class="module-icon">⚡</div>
+                    <h3>12. Sucesiones y Series</h3>
+                    <div class="module-tags"><span class="tag">Aritméticas</span><span class="tag">Geométricas</span><span class="tag">Convergencia</span></div>
+                    <p>Progresiones, sumatorias, series numéricas y criterios de convergencia.</p>
+                    <a href="#" class="btn-download">📥 Ver material (demo)</a>
+                </div>
+            </div>
+
+            <div class="coordinators">
+                <h3 style="color:#003366; margin-bottom:10px;">👨‍🏫 Coordinadores del proyecto</h3>
+                <p><strong>Académicos UNED - Universidad Estatal a Distancia</strong><br>
+                Carrera Enseñanza de la Matemática<br>
+                Material Didáctico desarrollado desde el proyecto <strong>Nivelación de Contenidos Matemáticos</strong>.</p>
+                <p style="margin-top:12px; font-size:0.9rem;">📧 Contacto: nivelacion.matematica@uned.ac.cr (ejemplo)</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>UNED - Universidad Estatal a Distancia</strong><br>
+            Carrera Enseñanza de la Matemática<br>
+            Proyecto Nivelación de Contenidos Matemáticos</p>
+            <p>© 2025 UNED. Todos los derechos reservados.</p>
+            <div class="license">
+                📜 Licencia Creative Commons Reconocimiento - No Comercial 3.0<br>
+                Puede compartir y adaptar el material siempre que se dé crédito adecuado y no se use con fines comerciales.
+            </div>
+            <p style="margin-top: 20px;">🌐 Sitio original: <a href="https://www.matesvirtuales.com/uned/index.php/nivelacion" target="_blank">www.matesvirtuales.com/uned/nivelacion</a></p>
+            <p style="font-size: 0.75rem; margin-top: 15px;">Versión de referencia estática con 12 módulos | Contenido académico con fines ilustrativos</p>
+        </div>
+    </footer>
+</body>
+</html>
